@@ -3,7 +3,7 @@ services:
   db:
     image: perurilahari/python-project2:database-image
     deploy:
-      replicas: 2
+      replicas: 1
     ports:
       - "3306:3306"
     networks:
