@@ -1,16 +1,18 @@
 ---
 services:
   db:
-    image: shaikmustafa/arshad:db
+    image: perurilahari/python-project2:database-image
     deploy:
       replicas: 1
     ports:
       - "3306:3306"
     networks:
       - mynetwork
+    volumes:
+      - myapp:/var/lib/mysql/
 
   auth_service:
-    image: shaikmustafa/arshad:auth
+    image: perurilahari/python-project2:auth-image
     deploy:
       replicas: 1
     ports:
@@ -22,7 +24,7 @@ services:
     
 
   book_service:
-    image: shaikmustafa/arshad:book
+    image: perurilahari/python-project2:book-image
     deploy:
       replicas: 1
     ports:
@@ -32,7 +34,7 @@ services:
     depends_on:
       - db
   borrow_service:
-    image: shaikmustafa/arshad:borrow
+    image: perurilahari/python-project2:borrow-image
     deploy:
       replicas: 1
     ports:
@@ -43,7 +45,7 @@ services:
       - db
 
   frontend:
-    image: shaikmustafa/arshad:frontend
+    image: perurilahari/python-project2:app-image
     deploy:
       replicas: 1
     ports:
@@ -58,3 +60,5 @@ services:
 networks:
   mynetwork:
     driver: bridge
+volumes:
+  myapp:
